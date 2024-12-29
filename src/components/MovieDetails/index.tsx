@@ -3,27 +3,29 @@ import MovieHeader from "./MovieHeader";
 import BackgroundImage from "./MovieHeader/BackgroundImage";
 
 export type Movie = {
-  title: string;
-  productionYear: number;
-  durationInSeconds: number;
-  backgroundImageUrl: string;
+  Id: string;
+  Title: string;
+  ProductionYear: number;
+  DurationInSeconds: number;
+  BackgroundImageUrl: string;
 };
 
 const movie: Movie = {
-  title: "Żółty szalik",
-  productionYear: 2000,
-  durationInSeconds: 59 * 60,
-  backgroundImageUrl: "./background.jpg",
+  Id: "1",
+  Title: "Żółty szalik",
+  ProductionYear: 2000,
+  DurationInSeconds: 59 * 60,
+  BackgroundImageUrl: "./background.jpg",
 };
 
 const MovieDetails = () => {
   const isLargeDesktop = useMinWidthMediaQuery(1280);
 
   return (
-    <div className="grid relative">
+    <div className="grid overflow-x-clip relative">
       {isLargeDesktop && (
         <BackgroundImage
-          url={movie.backgroundImageUrl}
+          url={movie.BackgroundImageUrl}
           className="absolute w-screen -z-10 top-0 left-0 [&>img]:blur-xl"
         />
       )}
