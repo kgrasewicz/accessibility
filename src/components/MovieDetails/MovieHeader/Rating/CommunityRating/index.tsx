@@ -25,7 +25,7 @@ const CommunityRating = ({ movieId }: CommunityRatingProps) => {
   };
 
   return (
-    <>
+    <span>
       <RatingTile
         onClick={toggleDrawer}
         header={<AverageRating value={communityRating.AverageRating} />}
@@ -38,7 +38,7 @@ const CommunityRating = ({ movieId }: CommunityRatingProps) => {
       >
         <CommunityRatingDrawerContent movieId={movieId} />
       </Drawer>
-    </>
+    </span>
   );
 };
 

@@ -1,6 +1,18 @@
 import { useMinWidthMediaQuery } from "../../utils/useMediaQuery";
+import MovieBasicInfo from "./MovieBasicInfo";
 import MovieHeader from "./MovieHeader";
 import BackgroundImage from "./MovieHeader/BackgroundImage";
+import RatingPanel from "./RatingPanel";
+
+type Awards = { Count?: number; NominationsCount?: number };
+type Country = { Id: string; Name: string };
+type Profile = { Id: string; Name: string };
+
+export type Tag = { Code: string; Label: string };
+const tags: Tag[] = [
+  { Code: "drama", Label: "Dramat" },
+  { Code: "christmas", Label: "Świąteczny" },
+];
 
 export type Movie = {
   Id: string;
@@ -8,6 +20,13 @@ export type Movie = {
   ProductionYear: number;
   DurationInSeconds: number;
   BackgroundImageUrl: string;
+  Description: string;
+  PosterImageUrl: string;
+  Tags: Tag[];
+  Director: Profile;
+  ProductionCountry: Country;
+  Screenwriter: Profile;
+  Awards?: Awards;
 };
 
 const movie: Movie = {
@@ -16,6 +35,14 @@ const movie: Movie = {
   ProductionYear: 2000,
   DurationInSeconds: 59 * 60,
   BackgroundImageUrl: "./background.jpg",
+  Description:
+    "Szanowany dyrektor firmy od lat zmaga się z nałogiem alkoholowym.",
+  Tags: tags,
+  PosterImageUrl: "./poster.webp",
+  Director: { Id: "sdfgdgdsfg", Name: "Janust Morgestern" },
+  ProductionCountry: { Id: "sdfsdf", Name: "Poland" },
+  Screenwriter: { Id: "sdf", Name: "Jerzy Pilch" },
+  Awards: { Count: 1, NominationsCount: 1 },
 };
 
 const MovieDetails = () => {
@@ -30,6 +57,10 @@ const MovieDetails = () => {
         />
       )}
       <MovieHeader movie={movie} />
+      <div className="bg-grey-100 relative w-full flex-col lg:flex-row flex gap-4 lg:max-w-[700px] xl:max-w-[1056px] mx-auto">
+        <MovieBasicInfo movie={movie} />
+        <RatingPanel movieId={movie.Id} />
+      </div>
     </div>
   );
 };

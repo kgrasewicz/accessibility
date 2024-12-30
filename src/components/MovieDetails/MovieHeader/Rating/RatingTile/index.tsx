@@ -6,6 +6,7 @@ type RatingTileProps = {
   description: ReactNode;
   layout?: "horizontal" | "vertical";
   descriptionClassName?: string;
+  href?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const RatingTile = ({
@@ -13,6 +14,7 @@ const RatingTile = ({
   description,
   layout = "vertical",
   onClick,
+  href,
   descriptionClassName,
   ...buttonProps
 }: RatingTileProps) => {
@@ -24,6 +26,15 @@ const RatingTile = ({
     "text-grey-200 text-sm lato-regular",
     descriptionClassName
   );
+
+  if (href) {
+    return (
+      <a href={href} className={classNames(className, "hover:bg-grey-500")}>
+        {header}
+        <span className={descriptionClassNames}>{description}</span>
+      </a>
+    );
+  }
 
   if (onClick) {
     return (
