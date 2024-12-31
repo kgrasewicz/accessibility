@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
+import tanstackQuery from "@tanstack/eslint-plugin-query";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
@@ -11,6 +12,7 @@ export default tseslint.config(
       js.configs.recommended,
       ...tseslint.configs.recommended,
       "plugin:prettier/recommended",
+      "plugin:@tanstack/eslint-plugin-query/recommended"
     ],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -20,9 +22,11 @@ export default tseslint.config(
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "@tanstack/query": tanstackQuery,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      ...tanstackQuery.configs.recommended.rules,
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },

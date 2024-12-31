@@ -2,16 +2,7 @@ import { useState } from "react";
 import Drawer from "../../../Drawer";
 import CommunityRatingDrawerContent from "../CommunityRating/CommunityRatingDrawerContent";
 import RatingTile from "../RatingTile";
-
-type CriticsRating = {
-  Count: number;
-  AverageRating: number;
-};
-
-const criticsRating: CriticsRating = {
-  Count: 28,
-  AverageRating: 6.9,
-};
+import useMovieScoreSummary from "../useMovieScoreSummary";
 
 type CriticsRatingProps = {
   movieId: string;
@@ -23,15 +14,21 @@ const CriticsRating = ({ movieId }: CriticsRatingProps) => {
     setIsDrawerOpen((prevState) => !prevState);
   };
 
+  const { data } = useMovieScoreSummary({ movieId });
+
+  if (!data?.average_critic_score) {
+    return null;
+  }
+
   return (
     <>
       <RatingTile
         header={
           <div className="rounded w-fit bg-secondary h-8 px-2 text-xl text-grey-200 lato-bold">
-            {criticsRating.AverageRating}
+            {data?.average_critic_score}
           </div>
         }
-        description={`${criticsRating.Count} krytyków`}
+        description={`${data?.critic_scores_count} krytyków`}
       />
       <Drawer title="Oceny krytyków" open={isDrawerOpen} onClose={toggleDrawer}>
         <CommunityRatingDrawerContent movieId={movieId} />

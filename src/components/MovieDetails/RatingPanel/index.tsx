@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Close from "src/assets/close.svg?react";
 import { classNames } from "src/utils/classNames.helper";
 import ratingMap from "src/utils/ratingMap";
+import useYourRating from "../MovieHeader/Rating/YourRating/useYourRating";
 import Stars from "./Stars";
 import styles from "./styles.module.scss";
+import useRateMovie from "./useRateMovie";
 
 const preferencesMatchPercentage = 73;
 type UserDetails = {
@@ -18,8 +20,6 @@ const userDetails: UserDetails = {
   Name: "redroseheaven",
 };
 
-const movieRating = 5;
-
 type RatingPanelProps = {
   movieId: string;
 };
@@ -28,6 +28,19 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
   const [hoveredVote, setHoveredVote] = useState<number>();
   const [currentVote, setCurrentVote] = useState<number>();
   const firstNameLetter = userDetails.Name.charAt(0);
+
+  const { data } = useYourRating({
+    movieId,
+    userId: "f3b1afb3-c94c-4f96-a6c2-ecf6b092b5d9",
+  });
+  const { mutateAsync } = useRateMovie({
+    movieId,
+    userId: "f3b1afb3-c94c-4f96-a6c2-ecf6b092b5d9",
+  });
+
+  useEffect(() => {
+    setCurrentVote(data);
+  }, []);
 
   return (
     <div
@@ -62,7 +75,10 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
       <Stars
         hoveredVote={hoveredVote}
         currentVote={currentVote}
-        setCurrentVote={setCurrentVote}
+        setCurrentVote={async (value) => {
+          await mutateAsync(value);
+          setCurrentVote(value);
+        }}
         setHoveredVote={setHoveredVote}
       />
     </div>

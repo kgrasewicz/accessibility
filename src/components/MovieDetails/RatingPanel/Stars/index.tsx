@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import StarOutline from "src/assets/starOutline.svg?react";
 import { classNames } from "src/utils/classNames.helper";
 import ratingMap from "src/utils/ratingMap";
@@ -24,16 +25,16 @@ const Stars = ({
         const vote = +key;
 
         return (
-          <>
+          <Fragment key={key}>
             <input
               key={index}
-              checked={currentVote === vote}
+              defaultChecked={currentVote === vote}
               className="absolute w-0 h-0 peer"
               name="rating"
               value={vote}
               type="radio"
               id={vote.toString()}
-              onClick={() => {
+              onChange={() => {
                 setCurrentVote(vote);
               }}
             />
@@ -58,7 +59,7 @@ const Stars = ({
               />
               <span className="sr-only">{vote} stars</span>
             </label>
-          </>
+          </Fragment>
         );
       })}
     </fieldset>
