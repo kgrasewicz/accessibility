@@ -14,6 +14,7 @@ const MovieDetails = () => {
   }
 
   if (!movie?.id) {
+    // TODO: Add error page
     return <div>error page</div>;
   }
 
