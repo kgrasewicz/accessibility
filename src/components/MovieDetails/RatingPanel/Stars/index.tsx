@@ -10,6 +10,7 @@ type StarsProps = {
   currentVote?: number;
   setHoveredVote: (value?: number) => void;
   setCurrentVote: (value?: number) => void;
+  errorElementId: string;
 };
 
 const Stars = ({
@@ -17,6 +18,7 @@ const Stars = ({
   currentVote,
   setHoveredVote,
   setCurrentVote,
+  errorElementId,
 }: StarsProps) => {
   return (
     <fieldset className="flex gap-x-1">
@@ -27,6 +29,7 @@ const Stars = ({
         return (
           <Fragment key={key}>
             <input
+              aria-describedby={errorElementId}
               key={index}
               defaultChecked={currentVote === vote}
               className="absolute w-0 h-0 peer"

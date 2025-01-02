@@ -7,7 +7,9 @@ import Stars from "./Stars";
 import styles from "./styles.module.scss";
 import useRateMovie from "./useRateMovie";
 
+const errorId = "error";
 const preferencesMatchPercentage = 73;
+
 type UserDetails = {
   Id: string;
   ProfileImageUrl?: string;
@@ -33,7 +35,7 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
     movieId,
     userId: "f3b1afb3-c94c-4f96-a6c2-ecf6b092b5d9",
   });
-  const { mutateAsync } = useRateMovie({
+  const { mutateAsync, isError } = useRateMovie({
     movieId,
     userId: "f3b1afb3-c94c-4f96-a6c2-ecf6b092b5d9",
   });
@@ -62,8 +64,8 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
           {currentVote === undefined ? (
             `${preferencesMatchPercentage}% w Twoim guście`
           ) : (
-            <span className="flex items-center gap-x-1" role="alert">
-              {ratingMap[currentVote]}
+            <span className="flex items-center gap-x-1">
+              <span role="alert">{ratingMap[currentVote]}</span>
               <button onClick={() => setCurrentVote(undefined)}>
                 <span className="sr-only">Close</span>
                 <Close className="h-4 w-4 text-grey-200" />
@@ -73,6 +75,7 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
         </span>
       </div>
       <Stars
+        errorElementId={errorId}
         hoveredVote={hoveredVote}
         currentVote={currentVote}
         setCurrentVote={async (value) => {
@@ -81,6 +84,9 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
         }}
         setHoveredVote={setHoveredVote}
       />
+      {isError && (
+        <p id={errorId}>Something went wrong... Please try again later</p>
+      )}
     </div>
   );
 };

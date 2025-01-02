@@ -39,7 +39,10 @@ const MovieBasicInfo = ({ movie }: MovieBasicInfoProps) => {
       <div className="h-fit grid gap-y-4">
         <div className="grid gap-y-1 text-base">
           <p className="text-grey-600">{movie.description}</p>
-          <a href="sdfsdfsfsfd" className="text-link">
+          <a
+            href="https://www.filmweb.pl/film/%C5%BB%C3%B3%C5%82ty+szalik-2000-32453/descs"
+            className="text-link"
+          >
             zobacz pełny opis
           </a>
         </div>
