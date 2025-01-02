@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import fetchData from "src/utils/fetchData";
 
 type Summary = {
-  movie_id: string;
+  movie_id: number;
   scores_count: string;
   avg_score: string;
   critic_scores_count: string;

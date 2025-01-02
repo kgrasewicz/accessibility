@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import fetchData from "src/utils/fetchData";
 
 export type Creator = {
-  id: string;
+  id: number;
   name: string;
   creator_role: "director" | "screenwriter";
 };

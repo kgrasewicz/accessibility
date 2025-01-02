@@ -13,7 +13,7 @@ const CommunityRatingDistribution = ({
   const { data } = useMovieScoreDistribution({ movieId });
 
   const maxDistributionPercentage = Math.max(
-    ...(data?.map((item) => +item.score_percentage) ?? [])
+    ...(data?.map((item) => item.score_percentage) ?? [])
   );
 
   return (
@@ -32,7 +32,7 @@ const CommunityRatingDistribution = ({
             <Bar
               percentage={
                 matchedRecord?.score_percentage
-                  ? (+matchedRecord.score_percentage * 100) /
+                  ? (matchedRecord.score_percentage * 100) /
                     maxDistributionPercentage
                   : 0
               }

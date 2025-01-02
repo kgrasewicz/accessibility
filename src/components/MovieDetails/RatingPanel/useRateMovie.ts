@@ -14,7 +14,11 @@ const useRateMovie = ({
     mutationFn: (score?: number) =>
       fetch(`/proxy/setUserMovieScore`, {
         method: "POST",
-        body: JSON.stringify({ movieId, userId, score }),
+        body: JSON.stringify({
+          movieId: Number(movieId),
+          userId,
+          score: Number(score),
+        }),
       }),
 
     onMutate: async (newScore) => {

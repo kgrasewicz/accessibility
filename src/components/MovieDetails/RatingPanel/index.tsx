@@ -7,7 +7,7 @@ import Stars from "./Stars";
 import styles from "./styles.module.scss";
 import useRateMovie from "./useRateMovie";
 
-const errorId = "error";
+const feedbackId = "feedback";
 const preferencesMatchPercentage = 73;
 
 type UserDetails = {
@@ -35,14 +35,14 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
     movieId,
     userId: "f3b1afb3-c94c-4f96-a6c2-ecf6b092b5d9",
   });
-  const { mutateAsync, isError } = useRateMovie({
+  const { mutateAsync, isError, isSuccess } = useRateMovie({
     movieId,
     userId: "f3b1afb3-c94c-4f96-a6c2-ecf6b092b5d9",
   });
 
   useEffect(() => {
     setCurrentVote(data);
-  }, []);
+  }, [data]);
 
   return (
     <div
@@ -65,7 +65,7 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
             `${preferencesMatchPercentage}% w Twoim guście`
           ) : (
             <span className="flex items-center gap-x-1">
-              <span role="alert">{ratingMap[currentVote]}</span>
+              <span role="status">{ratingMap[currentVote]}</span>
               <button onClick={() => setCurrentVote(undefined)}>
                 <span className="sr-only">Close</span>
                 <Close className="h-4 w-4 text-grey-200" />
@@ -75,7 +75,7 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
         </span>
       </div>
       <Stars
-        errorElementId={errorId}
+        feedbackElementId={feedbackId}
         hoveredVote={hoveredVote}
         currentVote={currentVote}
         setCurrentVote={async (value) => {
@@ -84,9 +84,20 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
         }}
         setHoveredVote={setHoveredVote}
       />
-      {isError && (
-        <p id={errorId}>Something went wrong... Please try again later</p>
-      )}
+      <p
+        className={classNames(
+          "text-sm",
+          isError && "text-error",
+          isSuccess && "text-success"
+        )}
+        id={feedbackId}
+      >
+        {isError
+          ? "Something went wrong... Please try again later"
+          : isSuccess
+            ? "Movie rated successfully!"
+            : ""}
+      </p>
     </div>
   );
 };

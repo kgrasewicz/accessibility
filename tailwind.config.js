@@ -14,7 +14,9 @@ export default {
         600: "#242424",
         900: "#000000",
       },
-      link: "#976103"
+      link: "#976103",
+      error: "#ed4337",
+      success: "#4bb543"
     },
     extend: {},
   },

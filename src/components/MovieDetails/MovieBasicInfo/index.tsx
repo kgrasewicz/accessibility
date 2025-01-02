@@ -32,7 +32,7 @@ const MovieBasicInfo = ({ movie }: MovieBasicInfoProps) => {
       >
         <img
           className="border-[1px] border-grey-200"
-          src={`data:image/webp;base64,${imageFromBuffer}`}
+          src="http://d5u3c83jm18yl.cloudfront.net/static/images/poster/poster_7698131_1.10.jpg"
           alt="Image alt sht"
         />
       </a>

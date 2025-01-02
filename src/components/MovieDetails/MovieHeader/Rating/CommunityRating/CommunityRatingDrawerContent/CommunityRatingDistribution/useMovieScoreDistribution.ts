@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import fetchData from "src/utils/fetchData";
 
 type DistributionItem = {
-  movie_id: string;
+  movie_id: number;
   score: number;
-  score_percentage: string;
+  score_percentage: number;
 };
 
 const useMovieScoreDistribution = ({ movieId }: { movieId: number }) =>
