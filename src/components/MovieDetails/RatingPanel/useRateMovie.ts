@@ -12,13 +12,10 @@ const useRateMovie = ({
 
   return useMutation({
     mutationFn: (score?: number) =>
-      fetch(
-        `https://dqe7mdlwux6uw5nrj26l2pjxz40pkfde.lambda-url.eu-north-1.on.aws/setUserMovieScore`,
-        {
-          method: "POST",
-          body: JSON.stringify({ movieId, userId, score }),
-        }
-      ),
+      fetch(`/proxy/setUserMovieScore`, {
+        method: "POST",
+        body: JSON.stringify({ movieId, userId, score }),
+      }),
 
     onMutate: async (newScore) => {
       await queryClient.cancelQueries({

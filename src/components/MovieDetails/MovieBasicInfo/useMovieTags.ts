@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import fetchData from "src/utils/fetchData";
 
 export type Tag = {
   code: string;
@@ -8,18 +9,7 @@ export type Tag = {
 const useMovieTags = (movieId: string) =>
   useQuery<Tag[]>({
     queryKey: ["movie-tags", movieId],
-    queryFn: () =>
-      fetch(
-        `https://dqe7mdlwux6uw5nrj26l2pjxz40pkfde.lambda-url.eu-north-1.on.aws/movieTags?movieId=${movieId}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      ).then((res) => {
-        return res.json();
-      }),
+    queryFn: () => fetchData(`movieTags?movieId=${movieId}`),
   });
 
 export default useMovieTags;

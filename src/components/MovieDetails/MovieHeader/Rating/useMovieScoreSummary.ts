@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import fetchData from "src/utils/fetchData";
 
 type Summary = {
   movie_id: string;
@@ -12,18 +13,7 @@ type Summary = {
 const useMovieScoreSummary = ({ movieId }: { movieId: string }) =>
   useQuery<Summary>({
     queryKey: ["movie-score-summary", movieId],
-    queryFn: () =>
-      fetch(
-        `https://dqe7mdlwux6uw5nrj26l2pjxz40pkfde.lambda-url.eu-north-1.on.aws/movieScoreSummary?movieId=${movieId}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      ).then((res) => {
-        return res.json();
-      }),
+    queryFn: () => fetchData(`movieScoreSummary?movieId=${movieId}`),
   });
 
 export default useMovieScoreSummary;
