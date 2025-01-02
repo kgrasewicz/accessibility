@@ -4,7 +4,7 @@ import Bar from "./Bar";
 import useMovieScoreDistribution from "./useMovieScoreDistribution";
 
 type CommunityRatingDistributionProps = {
-  movieId: string;
+  movieId: number;
 };
 
 const CommunityRatingDistribution = ({

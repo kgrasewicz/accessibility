@@ -7,7 +7,7 @@ const useYourRating = ({
   movieId,
   userId,
 }: {
-  movieId: string;
+  movieId: number;
   userId: string;
 }) => {
   const query = useQuery<{ score?: number }>({

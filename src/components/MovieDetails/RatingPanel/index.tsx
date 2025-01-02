@@ -23,7 +23,7 @@ const userDetails: UserDetails = {
 };
 
 type RatingPanelProps = {
-  movieId: string;
+  movieId: number;
 };
 
 const RatingPanel = ({ movieId }: RatingPanelProps) => {

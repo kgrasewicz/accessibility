@@ -6,7 +6,7 @@ export type Tag = {
   label: string;
 };
 
-const useMovieTags = (movieId: string) =>
+const useMovieTags = (movieId?: number) =>
   useQuery<Tag[]>({
     queryKey: ["movie-tags", movieId],
     queryFn: () => fetchData(`movieTags?movieId=${movieId}`),

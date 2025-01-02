@@ -7,7 +7,7 @@ type DistributionItem = {
   score_percentage: string;
 };
 
-const useMovieScoreDistribution = ({ movieId }: { movieId: string }) =>
+const useMovieScoreDistribution = ({ movieId }: { movieId: number }) =>
   useQuery<DistributionItem[]>({
     queryKey: ["movie-score-distribution", movieId],
     queryFn: () => fetchData(`movieScoreDistribution?movieId=${movieId}`),

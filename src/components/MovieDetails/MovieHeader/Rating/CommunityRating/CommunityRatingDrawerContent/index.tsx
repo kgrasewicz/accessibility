@@ -16,7 +16,7 @@ const communityRating: CommunityRating = {
 };
 
 type CommunityRatingDrawerContentProps = {
-  movieId: string;
+  movieId: number;
 };
 
 const CommunityRatingDrawerContent = ({

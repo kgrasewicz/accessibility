@@ -2,7 +2,7 @@ import RatingTile from "../RatingTile";
 import useYourRating from "./useYourRating";
 
 type YourRatingProps = {
-  movieId: string;
+  movieId: number;
 };
 
 const YourRating = ({ movieId }: YourRatingProps) => {

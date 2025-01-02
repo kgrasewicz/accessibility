@@ -10,7 +10,7 @@ const Tag = ({ tag }: TagProps) => (
     className="text-grey-600 rounded-lg border-[1px] duration-500 text-xs lato-bold items-center transition hover:bg-grey-200 border-grey-200 py-1 px-2 flex gap-x-1"
   >
     {tag.label}
-    <ChevronRight className="h-2" />
+    <ChevronRight aria-hidden className="h-2" />
   </a>
 );
 

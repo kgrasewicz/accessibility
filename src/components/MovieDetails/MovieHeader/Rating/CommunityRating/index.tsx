@@ -7,7 +7,7 @@ import AverageRating from "./AverageRating";
 import CommunityRatingDrawerContent from "./CommunityRatingDrawerContent";
 
 type CommunityRatingProps = {
-  movieId: string;
+  movieId: number;
 };
 
 const CommunityRating = ({ movieId }: CommunityRatingProps) => {

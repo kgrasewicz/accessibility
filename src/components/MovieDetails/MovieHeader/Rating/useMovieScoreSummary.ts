@@ -10,7 +10,7 @@ type Summary = {
   wants_to_see_count: string;
 };
 
-const useMovieScoreSummary = ({ movieId }: { movieId: string }) =>
+const useMovieScoreSummary = ({ movieId }: { movieId: number }) =>
   useQuery<Summary>({
     queryKey: ["movie-score-summary", movieId],
     queryFn: () => fetchData(`movieScoreSummary?movieId=${movieId}`),

@@ -8,13 +8,14 @@ type MovieHeaderProps = {
 };
 
 const MovieHeader = ({ movie }: MovieHeaderProps) => {
+  if (!movie.id) {
+    return null;
+  }
+
   return (
-    <div className="w-full xl:mt-16 md:h-[400px] pt-sans-narrow-bold grid xl:max-w-[1056px] mx-auto">
-      <BackgroundImage
-        className="md:h-[400px] [&>div]:md:h-[400px] overflow-hidden"
-        imageData={movie.background_image.data}
-      />
-      <div className="grid mb-4 self-end grid-center gap-y-4 w-full mx-auto px-3 xl:max-w-[1056px] lg:max-w-[700px]">
+    <div className="w-full md:h-[400px] pt-sans-narrow-bold grid lg:bg-grey-900">
+      <BackgroundImage imageData={movie.background_image.data} />
+      <div className="grid mb-4 relative self-end grid-center gap-y-4 w-full mx-auto px-3 lg:max-w-[1056px] md:max-w-[700px]">
         <div className="gap gap-y-1 grid">
           <span className="uppercase text-sm text-primary">Film</span>
           <h1 className="text-grey-100 text-3xl">{movie.title}</h1>

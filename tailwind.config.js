@@ -4,7 +4,7 @@ export default {
   theme: {
     colors: {
       primary: "#e7a90f",
-      secondary: "#36af4d",
+      secondary: "#237B36",
       grey: {
         100: "#ffffff",
         200: "#ccc",

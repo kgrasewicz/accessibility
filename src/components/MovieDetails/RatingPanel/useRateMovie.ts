@@ -6,7 +6,7 @@ const useRateMovie = ({
   movieId,
 }: {
   userId: string;
-  movieId: string;
+  movieId: number;
 }) => {
   const queryClient = useQueryClient();
 

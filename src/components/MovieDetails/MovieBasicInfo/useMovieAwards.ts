@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import fetchData from "src/utils/fetchData";
 
 export type Awards = {
-  movieId: string;
+  movieId: number;
   award_count?: number;
   nomination_count?: number;
 };
 
-const useMovieAwards = (movieId: string) =>
+const useMovieAwards = (movieId?: number) =>
   useQuery<Awards[]>({
     queryKey: ["movie-awards", movieId],
     queryFn: () => fetchData(`movieAwards?movieId=${movieId}`),

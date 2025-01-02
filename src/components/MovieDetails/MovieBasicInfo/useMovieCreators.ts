@@ -7,7 +7,7 @@ export type Creator = {
   creator_role: "director" | "screenwriter";
 };
 
-const useMovieCreators = (movieId: string) =>
+const useMovieCreators = (movieId?: number) =>
   useQuery<Creator[]>({
     queryKey: ["movie-creators", movieId],
     queryFn: () => fetchData(`movieCreators?movieId=${movieId}`),

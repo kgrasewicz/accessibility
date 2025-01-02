@@ -6,7 +6,7 @@ import RatingTile from "../RatingTile";
 import useMovieScoreSummary from "../useMovieScoreSummary";
 
 type CriticsRatingProps = {
-  movieId: string;
+  movieId: number;
 };
 
 const CriticsRating = ({ movieId }: CriticsRatingProps) => {
