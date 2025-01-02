@@ -1,3 +1,4 @@
+import getFilmwebUrl from "src/utils/getFilmwebUrl";
 import RatingTile from "../RatingTile";
 import useYourRating from "./useYourRating";
 
@@ -8,7 +9,7 @@ type YourRatingProps = {
 const YourRating = ({ movieId }: YourRatingProps) => {
   const { data } = useYourRating({
     movieId,
-    userId: "f3b1afb3-c94c-4f96-a6c2-ecf6b092b5d9",
+    userId: import.meta.env.VITE_VERCEL_USER_ID,
   });
 
   if (!data) {
@@ -17,7 +18,9 @@ const YourRating = ({ movieId }: YourRatingProps) => {
 
   return (
     <RatingTile
-      href="https://www.filmweb.pl/user/3706689/film/32453"
+      href={getFilmwebUrl(
+        `/user/${import.meta.env.VITE_VERCEL_USER_ID}/film/${movieId}`
+      )}
       header={
         <span className="text-2xl text-grey-200 lato-bold">{data}/10</span>
       }

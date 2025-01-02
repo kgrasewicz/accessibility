@@ -12,6 +12,7 @@ export default defineConfig({
   define: {
     "process.env": process.env,
     VITE_VERCEL_API_BASE: process.env.VITE_VERCEL_API_BASE,
+    VITE_VERCEL_USER_ID: process.env.VITE_VERCEL_USER_ID,
   },
   server: {
     proxy: {

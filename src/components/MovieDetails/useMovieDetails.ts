@@ -6,9 +6,9 @@ export type Movie = {
   title: string;
   production_year: string;
   duration_seconds: string;
-  background_image: { type: "Buffer"; data: ArrayBuffer };
+  background_image_url: string;
   description: string;
-  poster_image: { type: "Buffer"; data: ArrayBuffer };
+  poster_image_url: string;
   country_name: string;
 };
 
