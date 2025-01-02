@@ -10,10 +10,11 @@ const MovieDetails = () => {
   const { data: movie, isPending } = useMovieDetails(Number(movieId));
 
   if (isPending) {
-    return <Loader />;
+    return <Loader className="fixed top-0 left-0" />;
   }
 
   if (!movie?.id) {
+    // TODO: Add error page
     return <div>error page</div>;
   }
 

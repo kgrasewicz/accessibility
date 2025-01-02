@@ -1,7 +1,17 @@
+import { classNames } from "src/utils/classNames.helper";
 import styles from "./styles.module.scss";
 
-const Loader = () => (
-  <div className="w-screen content-center justify-items-center h-screen">
+type LoaderProps = {
+  className?: string;
+};
+
+const Loader = ({ className }: LoaderProps) => (
+  <div
+    className={classNames(
+      "w-full content-center justify-items-center h-full",
+      className
+    )}
+  >
     <div className={styles["loader"]} />
   </div>
 );
