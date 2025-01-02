@@ -1,11 +1,12 @@
 import { useState } from "react";
+import formatScore from "src/utils/formatScore";
 import Drawer from "../../../Drawer";
 import CommunityRatingDrawerContent from "../CommunityRating/CommunityRatingDrawerContent";
 import RatingTile from "../RatingTile";
 import useMovieScoreSummary from "../useMovieScoreSummary";
 
 type CriticsRatingProps = {
-  movieId: string;
+  movieId: number;
 };
 
 const CriticsRating = ({ movieId }: CriticsRatingProps) => {
@@ -25,7 +26,7 @@ const CriticsRating = ({ movieId }: CriticsRatingProps) => {
       <RatingTile
         header={
           <div className="rounded w-fit bg-secondary h-8 px-2 text-xl text-grey-200 lato-bold">
-            {data?.average_critic_score}
+            {formatScore(+data?.average_critic_score)}
           </div>
         }
         description={`${data?.critic_scores_count} krytyków`}

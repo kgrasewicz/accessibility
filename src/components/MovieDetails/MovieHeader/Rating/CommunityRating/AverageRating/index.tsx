@@ -1,3 +1,4 @@
+import formatScore from "src/utils/formatScore";
 import Star from "../../../../../../assets/star.svg?react";
 import { classNames } from "../../../../../../utils/classNames.helper";
 
@@ -9,11 +10,12 @@ type AverageRatingProps = {
 const AverageRating = ({ value, className }: AverageRatingProps) => {
   return (
     <div className="flex items-center gap-x-[6px]">
-      <Star className="text-primary" />
+      <Star aria-hidden className="text-primary" />
+      <span className="sr-only">Średnia ocena</span>
       <span
         className={classNames("text-2xl text-grey-200 lato-bold", className)}
       >
-        {value ?? "?"}
+        {formatScore(value) ?? "?"}
       </span>
     </div>
   );

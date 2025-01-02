@@ -1,3 +1,20 @@
-.gradient {
-  box-shadow: inset 0px 0px 100px 100px rgba(0, 0, 0, 0.9);
+.gradient:before {
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.001) 26.7%,
+      rgba(0, 0, 0, 0.001) 64%,
+      rgba(0, 0, 0, 1) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.001) 32%,
+      rgba(0, 0, 0, 0) 81.41%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  content: "";
+  width: 100%;
+  position: absolute;
+  height: 100%;
 }

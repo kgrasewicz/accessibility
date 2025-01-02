@@ -1,13 +1,7 @@
-import MovieDetails from "./components/MovieDetails";
-import TopBar from "./components/TopBar";
+import AppRoutes from "./Routes.";
 
 function App() {
-  return (
-    <>
-      <TopBar />
-      <MovieDetails />
-    </>
-  );
+  return <AppRoutes />;
 }
 
 export default App;

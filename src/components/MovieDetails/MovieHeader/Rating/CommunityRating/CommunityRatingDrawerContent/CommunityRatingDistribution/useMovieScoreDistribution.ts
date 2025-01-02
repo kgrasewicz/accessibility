@@ -1,26 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
+import fetchData from "src/utils/fetchData";
 
 type DistributionItem = {
-  movie_id: string;
+  movie_id: number;
   score: number;
-  score_percentage: string;
+  score_percentage: number;
 };
 
-const useMovieScoreDistribution = ({ movieId }: { movieId: string }) =>
+const useMovieScoreDistribution = ({ movieId }: { movieId: number }) =>
   useQuery<DistributionItem[]>({
     queryKey: ["movie-score-distribution", movieId],
-    queryFn: () =>
-      fetch(
-        `https://dqe7mdlwux6uw5nrj26l2pjxz40pkfde.lambda-url.eu-north-1.on.aws/movieScoreDistribution?movieId=${movieId}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      ).then((res) => {
-        return res.json();
-      }),
+    queryFn: () => fetchData(`movieScoreDistribution?movieId=${movieId}`),
   });
 
 export default useMovieScoreDistribution;

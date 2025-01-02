@@ -3,7 +3,7 @@ import CriticsRating from "./CriticsRating";
 import YourRating from "./YourRating";
 
 type RatingProps = {
-  movieId: string;
+  movieId: number;
 };
 
 const Rating = ({ movieId }: RatingProps) => {

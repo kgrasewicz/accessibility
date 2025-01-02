@@ -1,26 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
+import fetchData from "src/utils/fetchData";
 
 export type Awards = {
-  movieId: string;
+  movieId: number;
   award_count?: number;
   nomination_count?: number;
 };
 
-const useMovieAwards = (movieId: string) =>
+const useMovieAwards = (movieId?: number) =>
   useQuery<Awards[]>({
     queryKey: ["movie-awards", movieId],
-    queryFn: () =>
-      fetch(
-        `https://dqe7mdlwux6uw5nrj26l2pjxz40pkfde.lambda-url.eu-north-1.on.aws/movieAwards?movieId=${movieId}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      ).then((res) => {
-        return res.json();
-      }),
+    queryFn: () => fetchData(`movieAwards?movieId=${movieId}`),
   });
 
 export default useMovieAwards;

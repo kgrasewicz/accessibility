@@ -1,34 +1,27 @@
-import { useMinWidthMediaQuery } from "../../utils/useMediaQuery";
+import { useParams } from "react-router";
+import Loader from "../Loader";
 import MovieBasicInfo from "./MovieBasicInfo";
 import MovieHeader from "./MovieHeader";
-import BackgroundImage from "./MovieHeader/BackgroundImage";
 import RatingPanel from "./RatingPanel";
 import useMovieDetails from "./useMovieDetails";
 
 const MovieDetails = () => {
-  const isLargeDesktop = useMinWidthMediaQuery(1280);
-
-  const { data: movie, isPending } = useMovieDetails("32453");
+  const { movieId } = useParams();
+  const { data: movie, isPending } = useMovieDetails(Number(movieId));
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (!movie?.id) {
-    return;
+    return <div>error page</div>;
   }
 
   return (
     <div className="grid overflow-x-clip relative">
-      {isLargeDesktop && (
-        <BackgroundImage
-          imageData={movie?.background_image.data}
-          className="absolute w-screen -z-10 top-0 left-0 [&>img]:blur-xl"
-        />
-      )}
       <MovieHeader movie={movie} />
-      <div className="bg-grey-100 relative w-full flex-col lg:flex-row flex gap-4 lg:max-w-[700px] xl:max-w-[1056px] mx-auto">
-        <MovieBasicInfo movie={movie} />
+      <div className="bg-grey-100 relative w-full flex-col lg:flex-row flex gap-4 md:max-w-[700px] lg:max-w-[1056px] mx-auto">
+        <MovieBasicInfo isPending={isPending} movie={movie} />
         <RatingPanel movieId={movie?.id} />
       </div>
     </div>
