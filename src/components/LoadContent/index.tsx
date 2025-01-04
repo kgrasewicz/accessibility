@@ -6,6 +6,7 @@ type LoadContentProps = {
   isError?: boolean;
   children: ReactNode;
   className?: string;
+  errorElement: ReactNode;
 };
 
 const LoadContent = ({
@@ -13,12 +14,13 @@ const LoadContent = ({
   isError,
   children,
   className,
+  errorElement,
 }: LoadContentProps) => {
   return (
     <div aria-busy={isLoading} className={className} aria-live="polite">
       {isLoading && <Loader />}
       {!isLoading && !isError && children}
-      {!isLoading && isError && <div>error</div>}
+      {!isLoading && isError && errorElement}
     </div>
   );
 };
