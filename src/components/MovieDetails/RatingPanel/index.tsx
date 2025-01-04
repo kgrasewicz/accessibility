@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Close from "src/assets/close.svg?react";
 import LoadContent from "src/components/LoadContent";
-import CompactError from "src/components/LoadContent/CompactError";
 import { classNames } from "src/utils/classNames.helper";
 import getFilmwebUrl from "src/utils/getFilmwebUrl";
 import ratingMap from "src/utils/ratingMap";
@@ -28,7 +27,7 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
 
   const firstNameLetter = userDetails?.name.charAt(0);
 
-  const { data, isError: isYourRatingError } = useYourRating({
+  const { data } = useYourRating({
     movieId,
     userId: import.meta.env.VITE_VERCEL_USER_ID,
   });
@@ -43,8 +42,6 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
 
   return (
     <LoadContent
-      isError={isYourRatingError}
-      errorElement={<CompactError />}
       className={classNames(
         "mb-4 h-fit w-full lg:-translate-y-1/2 grid p-4 pb-6 bg-grey-100 rounded mx-auto md:w-fit lg:mx-4 gap-y-4 md:min-w-[308px] min-h-[144px]",
         styles["card"]

@@ -6,7 +6,7 @@ type LoadContentProps = {
   isError?: boolean;
   children: ReactNode;
   className?: string;
-  errorElement: ReactNode;
+  errorElement?: ReactNode;
 };
 
 const LoadContent = ({
