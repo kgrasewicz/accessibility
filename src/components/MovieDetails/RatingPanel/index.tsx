@@ -61,13 +61,17 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
           </a>
         </span>
         <span className="text-sm">
-          {currentVote === undefined ? (
+          {currentVote === undefined || currentVote === null ? (
             `${preferencesMatchPercentage}% w Twoim guście`
           ) : (
             <span className="flex items-center gap-x-1">
               <span role="status">{ratingMap[currentVote]}</span>
-              <button onClick={() => setCurrentVote(undefined)}>
-                <span className="sr-only">Close</span>
+              <button
+                onClick={async () => {
+                  await mutateAsync(undefined);
+                }}
+              >
+                <span className="sr-only">Wyczyść ocenę</span>
                 <Close className="h-4 w-4 text-grey-200" />
               </button>
             </span>
@@ -80,7 +84,6 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
         currentVote={currentVote}
         setCurrentVote={async (value) => {
           await mutateAsync(value);
-          setCurrentVote(value);
         }}
         setHoveredVote={setHoveredVote}
       />

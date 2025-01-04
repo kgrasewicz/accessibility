@@ -37,7 +37,7 @@ const Stars = ({
               value={vote}
               type="radio"
               id={vote.toString()}
-              onChange={() => {
+              onClick={() => {
                 setCurrentVote(vote);
               }}
             />
