@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import LoadContent from "../LoadContent";
+import FullScreenError from "../LoadContent/FullScreenError";
 import MovieBasicInfo from "./MovieBasicInfo";
 import MovieHeader from "./MovieHeader";
 import RatingPanel from "./RatingPanel";
@@ -11,6 +12,7 @@ const MovieDetails = () => {
 
   return (
     <LoadContent
+      errorElement={<FullScreenError />}
       className="w-screen h-screen"
       isError={!movie?.id || isError}
       isLoading={isPending}
