@@ -18,6 +18,8 @@ const CommunityRating = ({ movieId }: CommunityRatingProps) => {
 
   const { data, isPending } = useMovieScoreSummary({ movieId });
 
+  const hasData = data?.scores_count || data?.wants_to_see_count;
+
   if (isPending) {
     return null;
   }
@@ -25,7 +27,7 @@ const CommunityRating = ({ movieId }: CommunityRatingProps) => {
   return (
     <span>
       <RatingTile
-        onClick={toggleDrawer}
+        onClick={hasData ? toggleDrawer : undefined}
         header={
           <AverageRating
             value={data?.avg_score !== undefined ? +data?.avg_score : undefined}
@@ -38,13 +40,15 @@ const CommunityRating = ({ movieId }: CommunityRatingProps) => {
         }
         aria-label="Otwórz szczegóły ocen"
       />
-      <Drawer
-        title="Oceny użytkowników"
-        open={isDrawerOpen}
-        onClose={toggleDrawer}
-      >
-        <CommunityRatingDrawerContent movieId={movieId} />
-      </Drawer>
+      {hasData && (
+        <Drawer
+          title="Oceny użytkowników"
+          open={isDrawerOpen}
+          onClose={toggleDrawer}
+        >
+          <CommunityRatingDrawerContent movieId={movieId} />
+        </Drawer>
+      )}
     </span>
   );
 };
