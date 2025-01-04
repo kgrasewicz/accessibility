@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import Loader from "../Loader";
+import LoadContent from "../LoadContent";
 import MovieBasicInfo from "./MovieBasicInfo";
 import MovieHeader from "./MovieHeader";
 import RatingPanel from "./RatingPanel";
@@ -7,25 +7,24 @@ import useMovieDetails from "./useMovieDetails";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const { data: movie, isPending } = useMovieDetails(Number(movieId));
-
-  if (isPending) {
-    return <Loader className="fixed top-0 left-0" />;
-  }
-
-  if (!movie?.id) {
-    // TODO: Add error page
-    return <div>error page</div>;
-  }
+  const { data: movie, isPending, isError } = useMovieDetails(Number(movieId));
 
   return (
-    <div className="grid overflow-x-clip relative">
-      <MovieHeader movie={movie} />
-      <div className="bg-grey-100 relative w-full flex-col lg:flex-row flex gap-4 md:max-w-[700px] lg:max-w-[1056px] mx-auto">
-        <MovieBasicInfo isPending={isPending} movie={movie} />
-        <RatingPanel movieId={movie?.id} />
-      </div>
-    </div>
+    <LoadContent
+      className="w-screen h-screen"
+      isError={!movie?.id || isError}
+      isLoading={isPending}
+    >
+      {movie && (
+        <div className="grid overflow-x-clip relative">
+          <MovieHeader movie={movie} />
+          <div className="bg-grey-100 relative w-full flex-col lg:flex-row flex gap-4 md:max-w-[700px] lg:max-w-[1056px] mx-auto">
+            <MovieBasicInfo isPending={isPending} movie={movie} />
+            <RatingPanel movieId={movie.id} />
+          </div>
+        </div>
+      )}
+    </LoadContent>
   );
 };
 

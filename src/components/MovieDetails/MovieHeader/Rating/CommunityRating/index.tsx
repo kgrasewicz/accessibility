@@ -16,7 +16,11 @@ const CommunityRating = ({ movieId }: CommunityRatingProps) => {
     setIsDrawerOpen((prevState) => !prevState);
   };
 
-  const { data } = useMovieScoreSummary({ movieId });
+  const { data, isPending } = useMovieScoreSummary({ movieId });
+
+  if (isPending) {
+    return null;
+  }
 
   return (
     <span>

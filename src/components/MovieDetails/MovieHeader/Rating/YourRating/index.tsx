@@ -7,12 +7,12 @@ type YourRatingProps = {
 };
 
 const YourRating = ({ movieId }: YourRatingProps) => {
-  const { data } = useYourRating({
+  const { data, isPending } = useYourRating({
     movieId,
     userId: import.meta.env.VITE_VERCEL_USER_ID,
   });
 
-  if (!data) {
+  if (!data || isPending) {
     return;
   }
 
