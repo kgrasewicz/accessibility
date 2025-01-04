@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import fetchData from "src/utils/fetchData";
 
 export type Movie = {
-  id?: number;
+  id: number;
   title: string;
   production_year: string;
   duration_seconds: string;

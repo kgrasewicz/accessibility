@@ -15,9 +15,9 @@ const CriticsRating = ({ movieId }: CriticsRatingProps) => {
     setIsDrawerOpen((prevState) => !prevState);
   };
 
-  const { data } = useMovieScoreSummary({ movieId });
+  const { data, isPending } = useMovieScoreSummary({ movieId });
 
-  if (!data?.average_critic_score) {
+  if (!data?.average_critic_score || isPending) {
     return null;
   }
 
