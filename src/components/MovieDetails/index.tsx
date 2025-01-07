@@ -13,7 +13,7 @@ const MovieDetails = () => {
   return (
     <LoadContent
       errorElement={<FullScreenError />}
-      className="w-screen h-screen"
+      className="w-full h-screen"
       isError={!movie?.id || isError}
       isLoading={isPending}
     >
