@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Close from "src/assets/close.svg?react";
 import LoadContent from "src/components/LoadContent";
 import { classNames } from "src/utils/classNames.helper";
+import { userId } from "src/utils/consts";
 import getFilmwebUrl from "src/utils/getFilmwebUrl";
 import ratingMap from "src/utils/ratingMap";
 import useYourRating from "../MovieHeader/Rating/YourRating/useYourRating";
@@ -21,19 +22,17 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
   const [hoveredVote, setHoveredVote] = useState<number>();
   const [currentVote, setCurrentVote] = useState<number>();
 
-  const { data: userDetails, isPending } = useUserDetails(
-    import.meta.env.VITE_VERCEL_USER_ID
-  );
+  const { data: userDetails, isPending } = useUserDetails(userId);
 
   const firstNameLetter = userDetails?.name.charAt(0);
 
   const { data } = useYourRating({
     movieId,
-    userId: import.meta.env.VITE_VERCEL_USER_ID,
+    userId,
   });
   const { mutateAsync, isError, isSuccess } = useRateMovie({
     movieId,
-    userId: import.meta.env.VITE_VERCEL_USER_ID,
+    userId,
   });
 
   useEffect(() => {
