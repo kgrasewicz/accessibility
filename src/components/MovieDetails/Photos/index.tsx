@@ -44,7 +44,7 @@ const Photos = ({ movieName, movieId, movieProductionYear }: PhotosProps) => {
           Zdjęcia filmu {movieName} <ChevronRight aria-hidden className="h-3" />
         </a>
       </h2>
-      <div className="overflow-x-scroll overflow-y-hidden pb-8">
+      <div className="overflow-x-scroll lg:overflow-auto overflow-y-hidden pb-8">
         <ul
           className={classNames(
             "lg:grid inline-flex gap-[2px]",
