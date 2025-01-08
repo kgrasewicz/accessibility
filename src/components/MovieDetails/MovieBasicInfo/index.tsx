@@ -44,8 +44,7 @@ const MovieBasicInfo = ({ movie, isPending }: MovieBasicInfoProps) => {
         <img
           className="border-[1px] border-grey-200"
           src={movie.poster_image_url}
-          // TODO: Add proper alt text
-          alt="Poster image alt text"
+          alt={movie.poster_image_alt_text}
         />
       </a>
       <div className="h-fit grid gap-y-4">

@@ -14,7 +14,10 @@ const MovieHeader = ({ movie }: MovieHeaderProps) => {
 
   return (
     <div className="w-full md:h-[400px] pt-sans-narrow-bold grid lg:bg-grey-900">
-      <BackgroundImage imageUrl={movie.background_image_url} />
+      <BackgroundImage
+        altText={movie.background_image_alt_text}
+        imageUrl={movie.background_image_url}
+      />
       <div className="grid mb-4 relative self-end grid-center gap-y-4 w-full mx-auto px-3 lg:max-w-[1056px] md:max-w-[700px]">
         <div className="gap gap-y-1 grid">
           <span className="uppercase text-sm text-primary">Film</span>

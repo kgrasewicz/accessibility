@@ -1,6 +1,8 @@
 import ChevronRight from "src/assets/chevronRight.svg?react";
 import { classNames } from "src/utils/classNames.helper";
+import getEncodedUrlId from "src/utils/getEncodedUrlId";
 import styles from "./styles.module.scss";
+import useMoviePhotos from "./useMoviePhotos";
 
 const areas = [
   "vertical1",
@@ -10,51 +12,71 @@ const areas = [
   "square4",
   "vertical2",
 ];
+
 type PhotosProps = {
   movieName: string;
-  photosUrls?: string[];
+  movieId?: number;
+  movieProductionYear?: string;
 };
 
-const Photos = ({ movieName, photosUrls }: PhotosProps) => {
-  if (!photosUrls) {
+const Photos = ({ movieName, movieId, movieProductionYear }: PhotosProps) => {
+  const { data } = useMoviePhotos(movieId);
+
+  if (!data || !data.length) {
     return null;
   }
 
-  const photos = [...photosUrls];
+  const photos = [...data].slice(0, 6);
 
-  photos.slice(0, 5);
+  const encodedMovieUrlId = getEncodedUrlId([
+    movieName,
+    movieProductionYear ?? "",
+    movieId ?? "",
+  ]);
 
   return (
     <section className="grid gap-y-6 py-7 px-4">
       <h2 className="lato-bold text-xl">
         <a
           className="flex gap-x-1 items-center"
-          href={`https://www.filmweb.pl/film/${movieName}/photos`}
+          href={`https://www.filmweb.pl/film/${encodedMovieUrlId}/photos`}
         >
           Zdjęcia filmu {movieName} <ChevronRight aria-hidden className="h-3" />
         </a>
       </h2>
-      <ul className={classNames("grid gap-[2px]", styles["photos"])}>
-        {photos.map((url, index) => (
-          <li className="relative" key={url} style={{ gridArea: areas[index] }}>
-            <a
-              className={classNames(
-                index === 0 || index === photos.length - 1
-                  ? "pt-[67%]"
-                  : "pt-[100%]",
-                "relative block h-full w-full overflow-hidden"
-              )}
-              target="_blank"
-              href={url}
+      <div className="overflow-x-scroll overflow-y-hidden pb-8">
+        <ul
+          className={classNames(
+            "lg:grid inline-flex gap-[2px]",
+            styles["photos"]
+          )}
+        >
+          {photos.map((photo, index) => (
+            <li
+              className="relative lg:w-auto lg:h-auto w-[190px] h-[190px]"
+              key={photo.url}
+              style={{ gridArea: areas[index] }}
             >
-              <img
-                className="h-auto min-h-full w-full hover:scale-125 absolute top-0 left-0 transition-all duration-500 object-cover"
-                src={url}
-              />
-            </a>
-          </li>
-        ))}
-      </ul>
+              <a
+                className={classNames(
+                  index === 0 || index === photos.length - 1
+                    ? "pt-[67%]"
+                    : "pt-[100%]",
+                  "relative block h-full w-full overflow-hidden"
+                )}
+                target="_blank"
+                href={photo.url}
+              >
+                <img
+                  className="h-auto min-h-full w-full hover:scale-125 absolute top-0 left-0 transition-all duration-500 object-cover"
+                  src={photo.url}
+                  alt={photo.alt_text}
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 };

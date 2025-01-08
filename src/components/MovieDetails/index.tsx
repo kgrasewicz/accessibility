@@ -9,7 +9,9 @@ import useMovieDetails from "./useMovieDetails";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const { data: movie, isPending, isError } = useMovieDetails(Number(movieId));
+  const parsedMovieId = Number(movieId);
+
+  const { data: movie, isPending, isError } = useMovieDetails(parsedMovieId);
 
   return (
     <LoadContent
@@ -26,7 +28,8 @@ const MovieDetails = () => {
               <MovieBasicInfo isPending={isPending} movie={movie} />
               <Photos
                 movieName={movie.title}
-                photosUrls={[movie.background_image_url]}
+                movieId={parsedMovieId}
+                movieProductionYear={movie.production_year}
               />
             </div>
             <RatingPanel movieId={movie.id} />
