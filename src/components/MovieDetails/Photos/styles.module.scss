@@ -1,0 +1,8 @@
+.photos {
+  grid-template-areas:
+    "vertical1 vertical1 square1 square2"
+    "vertical1 vertical1 vertical2 vertical2"
+    "square3 square4 vertical2 vertical2";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: initial;
+}
