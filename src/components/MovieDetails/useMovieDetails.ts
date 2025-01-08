@@ -10,6 +10,7 @@ export type Movie = {
   description: string;
   poster_image_url: string;
   country_name: string;
+  images?: string[];
 };
 
 const useMovieDetails = (movieId: number) =>
