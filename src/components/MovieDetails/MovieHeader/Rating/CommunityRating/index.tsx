@@ -6,6 +6,7 @@ import useMovieScoreSummary from "../useMovieScoreSummary";
 import AverageRating from "./AverageRating";
 import CommunityRatingDrawerContent from "./CommunityRatingDrawerContent";
 
+const communityRatingDrawerId = "communityRatingDrawer";
 type CommunityRatingProps = {
   movieId: number;
 };
@@ -27,6 +28,8 @@ const CommunityRating = ({ movieId }: CommunityRatingProps) => {
   return (
     <span>
       <RatingTile
+        aria-expanded={isDrawerOpen}
+        aria-controls={communityRatingDrawerId}
         onClick={hasData ? toggleDrawer : undefined}
         header={
           <AverageRating
@@ -38,10 +41,11 @@ const CommunityRating = ({ movieId }: CommunityRatingProps) => {
             ? formatVotesCount(+data?.scores_count)
             : "Brak ocen"
         }
-        aria-label="Otwórz szczegóły ocen"
+        aria-label="Szczegóły ocen"
       />
       {hasData && (
         <Drawer
+          id={communityRatingDrawerId}
           title="Oceny użytkowników"
           open={isDrawerOpen}
           onClose={toggleDrawer}

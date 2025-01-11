@@ -26,7 +26,7 @@ const CommunityRatingDistribution = ({
         return (
           <li className="flex gap-x-4 items-center" key={key}>
             <div className="flex items-center gap-x-2 text-sm w-10">
-              <Star className="text-primary h-4 w-4" />
+              <Star aria-hidden className="text-primary h-4 w-4" />
               {key}
             </div>
             <Bar
