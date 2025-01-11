@@ -55,11 +55,11 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
             <span className="flex items-center gap-x-1">
               <span role="status">{ratingMap[currentVote]}</span>
               <button
+                aria-label="Wyczyść ocenę"
                 onClick={async () => {
                   await mutateAsync(undefined);
                 }}
               >
-                <span className="sr-only">Wyczyść ocenę</span>
                 <Close className="h-4 w-4 text-grey-200" />
               </button>
             </span>
@@ -84,9 +84,9 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
         id={feedbackId}
       >
         {isError
-          ? "Something went wrong... Please try again later"
+          ? "Coś poszło nie tak, spróbuj ponownie później"
           : isSuccess
-            ? "Movie rated successfully!"
+            ? "Film został oceniony"
             : ""}
       </p>
     </LoadContent>

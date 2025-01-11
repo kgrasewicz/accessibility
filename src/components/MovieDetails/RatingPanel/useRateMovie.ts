@@ -32,26 +32,16 @@ const useRateMovie = ({
         userId,
       ]);
 
-      queryClient.setQueryData(
-        [movieScoreQuery, movieId, userId],
-        [
-          {
-            score: newScore,
-          },
-        ]
-      );
+      queryClient.setQueryData([movieScoreQuery, movieId, userId], {
+        score: newScore,
+      });
 
       return { previousScore, newScore };
     },
     onError: (_err, _newScore, context) => {
-      queryClient.setQueryData(
-        [movieScoreQuery, movieId, userId],
-        [
-          {
-            score: context?.previousScore,
-          },
-        ]
-      );
+      queryClient.setQueryData([movieScoreQuery, movieId, userId], {
+        score: context?.previousScore,
+      });
     },
     onSettled: () => {
       queryClient.invalidateQueries({
