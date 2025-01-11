@@ -5,6 +5,8 @@ import RatingTile from "../RatingTile";
 import useMovieScoreSummary from "../useMovieScoreSummary";
 import CriticsRatingDrawerContent from "./CriticsRatingDrawerContent";
 
+const criticsRatingDrawerId = "criticsRatingDrawer";
+
 type CriticsRatingProps = {
   movieId: number;
 };
@@ -24,6 +26,8 @@ const CriticsRating = ({ movieId }: CriticsRatingProps) => {
   return (
     <>
       <RatingTile
+        aria-expanded={isDrawerOpen}
+        aria-controls={criticsRatingDrawerId}
         onClick={toggleDrawer}
         header={
           <div className="rounded w-fit bg-secondary h-8 px-2 text-xl text-grey-200 lato-bold">
@@ -31,8 +35,14 @@ const CriticsRating = ({ movieId }: CriticsRatingProps) => {
           </div>
         }
         description={`${data?.critic_scores_count} krytyków`}
+        aria-label="Szczegóły ocen krytyków"
       />
-      <Drawer title="Oceny krytyków" open={isDrawerOpen} onClose={toggleDrawer}>
+      <Drawer
+        id={criticsRatingDrawerId}
+        title="Oceny krytyków"
+        open={isDrawerOpen}
+        onClose={toggleDrawer}
+      >
         <CriticsRatingDrawerContent movieId={movieId} />
       </Drawer>
     </>
