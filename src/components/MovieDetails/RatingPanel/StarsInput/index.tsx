@@ -5,7 +5,7 @@ import ratingMap from "src/utils/ratingMap";
 
 const activeClassName = "fill-primary stroke-primary";
 
-type StarsProps = {
+type StarsInputProps = {
   hoveredVote?: number;
   currentVote?: number;
   setHoveredVote: (value?: number) => void;
@@ -13,16 +13,16 @@ type StarsProps = {
   feedbackElementId: string;
 };
 
-const Stars = ({
+const StarsInput = ({
   hoveredVote,
   currentVote,
   setHoveredVote,
   setCurrentVote,
   feedbackElementId,
-}: StarsProps) => {
+}: StarsInputProps) => {
   return (
     <fieldset className="flex gap-x-1">
-      <legend className="sr-only">Your rating</legend>
+      <legend className="sr-only">Twoja ocena</legend>
       {Object.keys(ratingMap).map((key, index) => {
         const vote = +key;
 
@@ -60,7 +60,7 @@ const Stars = ({
                     activeClassName
                 )}
               />
-              <span className="sr-only">{vote} stars</span>
+              <span className="sr-only">{vote} na 10 gwiazdek</span>
             </label>
           </Fragment>
         );
@@ -69,4 +69,4 @@ const Stars = ({
   );
 };
 
-export default Stars;
+export default StarsInput;
