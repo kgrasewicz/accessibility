@@ -31,15 +31,12 @@ const StarsInput = ({
             <input
               aria-describedby={feedbackElementId}
               key={index}
-              defaultChecked={currentVote === vote}
               className="absolute w-0 h-0 peer"
               name="rating"
-              value={vote}
+              checked={currentVote === vote}
               type="radio"
               id={vote.toString()}
-              onClick={() => {
-                setCurrentVote(vote);
-              }}
+              onChange={() => setCurrentVote(vote)}
             />
             <label
               htmlFor={vote.toString()}
