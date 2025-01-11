@@ -1,4 +1,5 @@
 import { useParams } from "react-router";
+import { useMinWidthMediaQuery } from "src/utils/useMediaQuery";
 import LoadContent from "../LoadContent";
 import FullScreenError from "../LoadContent/FullScreenError";
 import MovieBasicInfo from "./MovieBasicInfo";
@@ -9,6 +10,7 @@ import useMovieDetails from "./useMovieDetails";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
+  const isLargerThanMobile = useMinWidthMediaQuery(1056);
   const parsedMovieId = Number(movieId);
 
   const { data: movie, isPending, isError } = useMovieDetails(parsedMovieId);
@@ -26,14 +28,23 @@ const MovieDetails = () => {
           <div className="bg-grey-100 relative w-full flex-col lg:flex-row flex gap-4 md:max-w-[700px] lg:max-w-[1056px] mx-auto">
             <div className="grid gap-y-6">
               <MovieBasicInfo isPending={isPending} movie={movie} />
-              <Photos
-                movieName={movie.title}
-                movieId={parsedMovieId}
-                movieProductionYear={movie.production_year}
-              />
+              {isLargerThanMobile && (
+                <Photos
+                  movieName={movie.title}
+                  movieId={parsedMovieId}
+                  movieProductionYear={movie.production_year}
+                />
+              )}
             </div>
             <RatingPanel movieId={movie.id} />
           </div>
+          {!isLargerThanMobile && (
+            <Photos
+              movieName={movie.title}
+              movieId={parsedMovieId}
+              movieProductionYear={movie.production_year}
+            />
+          )}
         </div>
       )}
     </LoadContent>
