@@ -3,10 +3,10 @@ import Close from "src/assets/close.svg?react";
 import LoadContent from "src/components/LoadContent";
 import { classNames } from "src/utils/classNames.helper";
 import { userId } from "src/utils/consts";
-import getFilmwebUrl from "src/utils/getFilmwebUrl";
 import ratingMap from "src/utils/ratingMap";
+import Avatar from "../Avatar";
 import useYourRating from "../MovieHeader/Rating/YourRating/useYourRating";
-import Stars from "./Stars";
+import StarsInput from "./StarsInput";
 import styles from "./styles.module.scss";
 import useRateMovie from "./useRateMovie";
 import useUserDetails from "./useUserDetails";
@@ -23,8 +23,6 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
   const [currentVote, setCurrentVote] = useState<number>();
 
   const { data: userDetails, isPending } = useUserDetails(userId);
-
-  const firstNameLetter = userDetails?.name.charAt(0);
 
   const { data } = useYourRating({
     movieId,
@@ -45,17 +43,11 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
         "mb-4 h-fit w-full lg:-translate-y-1/2 grid p-4 pb-6 bg-grey-100 rounded mx-auto md:w-fit lg:mx-4 gap-y-4 md:min-w-[308px] min-h-[144px]",
         styles["card"]
       )}
+      isError={!userDetails}
       isLoading={isPending}
     >
       <div className="flex gap-x-3 items-center">
-        <span className="uppercase flex p-[2px] rounded-full h-12 w-12 border-[1px] border-grey-200">
-          <a
-            href={getFilmwebUrl(`/user/${userDetails?.name}`)}
-            className="text-grey-500 w-full h-full flex items-center justify-center text-xl rounded-full bg-grey-200"
-          >
-            {firstNameLetter}
-          </a>
-        </span>
+        {userDetails && <Avatar isLink name={userDetails.name} />}
         <span className="text-sm">
           {currentVote === undefined || currentVote === null ? (
             `${preferencesMatchPercentage}% w Twoim guście`
@@ -74,7 +66,7 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
           )}
         </span>
       </div>
-      <Stars
+      <StarsInput
         feedbackElementId={feedbackId}
         hoveredVote={hoveredVote}
         currentVote={currentVote}
