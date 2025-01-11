@@ -5,7 +5,9 @@ const BaseLayout = () => {
   return (
     <>
       <TopBar />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };
