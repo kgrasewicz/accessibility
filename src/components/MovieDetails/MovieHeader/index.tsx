@@ -23,6 +23,7 @@ const MovieHeader = ({ movie }: MovieHeaderProps) => {
           <span className="uppercase text-sm text-primary">Film</span>
           <h1 className="text-grey-100 text-3xl">{movie.title}</h1>
           <div className="flex gap-x-4 font-semibold text-grey-200 text-sm ">
+            {movie.title_original && <span>{movie.title_original}</span>}
             <h2>{movie.production_year}</h2>
             <span>{formatDuration(+movie.duration_seconds)}</span>
           </div>
