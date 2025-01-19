@@ -4,6 +4,7 @@ import fetchData from "src/utils/fetchData";
 export type Movie = {
   id: number;
   title: string;
+  title_original?: string;
   production_year: string;
   duration_seconds: string;
   background_image_url: string;
