@@ -40,7 +40,7 @@ const RatingPanel = ({ movieId }: RatingPanelProps) => {
   return (
     <LoadContent
       className={classNames(
-        "mb-4 h-fit w-full lg:-translate-y-1/2 grid p-4 pb-6 bg-grey-100 rounded mx-auto md:w-fit lg:mx-4 gap-y-4 md:min-w-[308px] min-h-[144px]",
+        "mb-4 h-fit order-last w-full lg:-translate-y-1/2 grid p-4 pb-6 bg-grey-100 rounded mx-auto md:w-fit lg:mx-4 gap-y-4 md:min-w-[308px] min-h-[144px]",
         styles["card"]
       )}
       isError={!userDetails}
