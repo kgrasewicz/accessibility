@@ -25,9 +25,12 @@ const MovieDetails = () => {
       {movie && (
         <div className="grid overflow-x-clip relative">
           <MovieHeader movie={movie} />
-          <div className="bg-grey-100 relative w-full flex-col lg:flex-row flex gap-4 md:max-w-[700px] lg:max-w-[1056px] mx-auto">
+          <div className="bg-grey-100 relative w-full md:max-w-[700px] lg:max-w-[1056px] mx-auto">
             <div className="grid gap-y-6">
-              <MovieBasicInfo isPending={isPending} movie={movie} />
+              <div className="flex-col lg:flex-row flex gap-4">
+                <RatingPanel movieId={movie.id} />
+                <MovieBasicInfo isPending={isPending} movie={movie} />
+              </div>
               {isLargerThanMobile && (
                 <Photos
                   movieName={movie.title}
@@ -36,7 +39,6 @@ const MovieDetails = () => {
                 />
               )}
             </div>
-            <RatingPanel movieId={movie.id} />
           </div>
           {!isLargerThanMobile && (
             <Photos
