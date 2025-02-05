@@ -28,8 +28,8 @@ const MovieDetails = () => {
           <div className="bg-grey-100 relative w-full md:max-w-[700px] lg:max-w-[1056px] mx-auto">
             <div className="grid gap-y-6">
               <div className="flex-col lg:flex-row flex gap-4">
-                <RatingPanel movieId={movie.id} />
                 <MovieBasicInfo isPending={isPending} movie={movie} />
+                <RatingPanel movieId={movie.id} />
               </div>
               {isLargerThanMobile && (
                 <Photos
